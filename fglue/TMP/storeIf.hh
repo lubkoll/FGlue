@@ -10,7 +10,7 @@
 
 namespace FGlue
 {
-  //! Stores its argument Type if Operation::template apply<Type>::type::value evaluates to true, else stores a Empty.
+  //! Stores Arg if Operation::template apply<Arg>::type evaluates to True, else stores Empty.
   template <class Operation>
   struct StoreIf
   {
@@ -20,20 +20,6 @@ namespace FGlue
       using type = typename std::conditional< isTrue< Apply<Operation,Arg> >() , Arg , Empty>::type;
     };
   };
-
-
-  template <class Base>
-  using StoreIfDerivedFrom = StoreIf< IsDerivedFrom<Base> >;
-
-  template <class Base>
-  using StoreIfNotDerivedFrom = StoreIf< IsNotDerivedFrom<Base> >;
-
-
-  template <class Derived>
-  using StoreIfBaseOf = StoreIf< IsBaseOf<Derived> >;
-
-  template <class Derived>
-  using StoreIfNotBaseOf = StoreIf< IsNotBaseOf<Derived> >;
 }
 
 #endif // FGLUE_TMP_STORE_IF_HH

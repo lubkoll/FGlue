@@ -13,7 +13,7 @@ namespace FGlue
     template <class First, class Second>
     struct apply
     {
-       using type = std::conditional_t< isTrue<First>() && isTrue<Second>() , True , False >;
+       using type = std::conditional_t< isTrue<First>() && isTrue<Second>() , std::true_type , std::false_type >;
     };
   };
 }

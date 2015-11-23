@@ -46,6 +46,8 @@ set_source_files_properties(${PROJECT_SOURCE_DIR}/external/googletest/src/gtest-
 set_source_files_properties(${PROJECT_SOURCE_DIR}/external/googletest/src/gtest_main.cc PROPERTIES GENERATED 1)
 
 aux_source_directory(Test/TMP SRC_LIST)
+aux_source_directory(Test/Fusion SRC_LIST)
+aux_source_directory(Test/Macro SRC_LIST)
 
 add_executable(
     unit_tests

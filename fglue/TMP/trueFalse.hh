@@ -6,47 +6,16 @@
 namespace FGlue
 {
   //! Template meta-function that always evaluates to std::true_type.
-  struct True
-  {
-    template <class...>
-    struct apply
-    {
-      using type = std::true_type;
-    };
-  };
+  using True = std::true_type;
 
   //! Template meta-function that always evaluates to std::false_type.
-  struct False
-  {
-    template <class...>
-    struct apply
-    {
-      using type = std::false_type;
-    };
-  };
+  using False = std::false_type;
 
-  struct TrueFunction
-  {
-    template <class...>
-    struct apply
-    {
-      using type = True;
-    };
-  };
-
-  struct FalseFunction
-  {
-    template <class...>
-    struct apply
-    {
-      using type = False;
-    };
-  };
-
+  //! @return std::is_same<std::decay_t<Type>,True>::value;
   template <class Type>
   constexpr bool isTrue()
   {
-    return std::is_same<Type,True>::value;
+    return std::is_same<std::decay_t<Type>,True>::value;
   }
 }
 

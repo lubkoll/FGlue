@@ -5,18 +5,8 @@
 
 namespace FGlue
 {
-  template <class Operation>
-  struct Make
-  {
-    template <class... Args>
-    struct apply
-    {
-      using type = Apply<Operation,Args...>;
-    };
-  };
-
   template <template <class...> class Operation>
-  struct MakeFromTemplate
+  struct Make
   {
     template <class... Args>
     struct apply

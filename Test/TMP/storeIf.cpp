@@ -23,11 +23,11 @@ TEST(TMP_Test,StoreIf)
 
 TEST(TMP_Test, StoreIfDerivedFrom)
 {
-  using StoredTypeBaseDerived = Apply< StoreIfDerivedFrom<Base> , Derived >;
+  using StoredTypeBaseDerived = Apply< StoreIf< IsDerivedFrom<Base> > , Derived >;
   auto isDerived = std::is_same< Derived , StoredTypeBaseDerived >::value;
   ASSERT_TRUE( isDerived );
 
-  using StoredTypeDerivedBase = Apply< StoreIfDerivedFrom<Derived> , Base >;
+  using StoredTypeDerivedBase = Apply< StoreIf< IsDerivedFrom<Derived> > , Base >;
   auto isBase = std::is_same< Base , StoredTypeDerivedBase >::value;
   auto isEmpty = std::is_same< Empty , StoredTypeDerivedBase >::value;
   ASSERT_FALSE( isBase );
@@ -36,37 +36,37 @@ TEST(TMP_Test, StoreIfDerivedFrom)
 
 TEST(TMP_Test, StoreIfNotDerivedFrom)
 {
-  using StoredTypeBaseDerived = Apply< StoreIfNotDerivedFrom<Base> , Derived >;
+  using StoredTypeBaseDerived = Apply< StoreIf< IsNotDerivedFrom<Base> > , Derived >;
   auto isDerived = std::is_same< Derived , StoredTypeBaseDerived >::value;
   auto isEmpty = std::is_same< Empty , StoredTypeBaseDerived >::value;
   ASSERT_FALSE( isDerived );
   ASSERT_TRUE( isEmpty );
 
-  using StoredTypeDerivedBase = Apply< StoreIfNotDerivedFrom<Derived> , Base >;
+  using StoredTypeDerivedBase = Apply< StoreIf< IsNotDerivedFrom<Derived> > , Base >;
   auto isBase = std::is_same< Base , StoredTypeDerivedBase >::value;
   ASSERT_TRUE( isBase );
 }
 
 TEST(TMP_Test, StoreIfBaseOf)
 {
-  using StoredTypeBaseDerived = Apply< StoreIfBaseOf<Base> , Derived >;
+  using StoredTypeBaseDerived = Apply< StoreIf< IsBaseOf<Base> > , Derived >;
   auto isDerived = std::is_same< Derived , StoredTypeBaseDerived >::value;
   auto isEmpty = std::is_same< Empty , StoredTypeBaseDerived >::value;
   ASSERT_FALSE( isDerived );
   ASSERT_TRUE( isEmpty );
 
-  using StoredTypeDerivedBase = Apply< StoreIfBaseOf<Derived> , Base >;
+  using StoredTypeDerivedBase = Apply< StoreIf< IsBaseOf<Derived> > , Base >;
   auto isBase = std::is_same< Base , StoredTypeDerivedBase >::value;
   ASSERT_TRUE( isBase );
 }
 
 TEST(TMP_Test, StoreIfNotBaseOf)
 {
-  using StoredTypeBaseDerived = Apply< StoreIfNotBaseOf<Base> , Derived >;
+  using StoredTypeBaseDerived = Apply< StoreIf< IsNotBaseOf<Base> > , Derived >;
   auto isDerived = std::is_same< Derived , StoredTypeBaseDerived >::value;
   ASSERT_TRUE( isDerived );
 
-  using StoredTypeDerivedBase = Apply< StoreIfNotBaseOf<Derived> , Base >;
+  using StoredTypeDerivedBase = Apply< StoreIf< IsNotBaseOf<Derived> > , Base >;
   auto isBase = std::is_same< Base , StoredTypeDerivedBase >::value;
   auto isEmpty = std::is_same< Empty , StoredTypeDerivedBase >::value;
   ASSERT_FALSE( isBase );
