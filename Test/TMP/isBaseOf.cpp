@@ -8,7 +8,7 @@
 using namespace FGlue;
 using namespace Test;
 
-TEST(TMP_Test,IsBaseOf)
+TEST(TMP,IsBaseOf)
 {
   auto baseBase = isTrue< Apply<IsBaseOf<Base>,Base > >();
   auto baseDerived = isTrue< Apply<IsBaseOf<Base>,Derived> >();
@@ -19,7 +19,7 @@ TEST(TMP_Test,IsBaseOf)
   ASSERT_TRUE( derivedBase );
 }
 
-TEST(TMP_Test,IsNotBaseOf)
+TEST(TMP,IsNotBaseOf)
 {
 auto baseBase = isTrue< Apply<IsNotBaseOf<Base >,Base > >();
 auto baseDerived = isTrue< Apply<IsNotBaseOf<Base>,Derived> >();

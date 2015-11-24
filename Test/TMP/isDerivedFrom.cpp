@@ -8,7 +8,7 @@
 using namespace FGlue;
 using namespace Test;
 
-TEST(TMP_Test,IsDerivedFrom)
+TEST(TMP,IsDerivedFrom)
 {
   auto baseBase =  isTrue<Apply<IsDerivedFrom<Base>,Base>>();
   auto baseDerived = isTrue<Apply<IsDerivedFrom<Base>,Derived>>();
@@ -19,7 +19,7 @@ TEST(TMP_Test,IsDerivedFrom)
   ASSERT_FALSE( derivedBase );
 }
 
-TEST(TMP_Test,IsNotDerivedFrom)
+TEST(TMP,IsNotDerivedFrom)
 {
   auto baseBase =  isTrue<Apply<IsNotDerivedFrom<Base>,Base>>();
   auto baseDerived = isTrue<Apply<IsNotDerivedFrom<Base>,Derived>>();

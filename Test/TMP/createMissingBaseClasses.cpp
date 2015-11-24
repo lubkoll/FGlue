@@ -16,7 +16,7 @@ struct Y : B{};
 struct Z : C{};
 
 
-TEST(Test_TMP,DetectBaseClassCandidates)
+TEST(TMP,DetectBaseClassCandidates)
 {
   using BaseClassIdentifier = VariadicIsBaseOf<X,Y,Z>;
 

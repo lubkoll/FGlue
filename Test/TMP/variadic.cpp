@@ -15,7 +15,7 @@
 using namespace FGlue;
 using namespace Test;
 
-TEST(TMP_Test,Variadic_Logic_Apply)
+TEST(TMP,Variadic_Logic_Apply)
 {
   auto value = isTrue< Apply<Binary2Variadic<And>,True,True> >();
   ASSERT_TRUE(value);
@@ -33,14 +33,14 @@ TEST(TMP_Test,Variadic_Logic_Apply)
   ASSERT_FALSE(value);
 }
 
-TEST(TMP_Test,Make)
+TEST(TMP,Make)
 {
   using Operation = Apply< Make<IsDerivedFrom> , Base >;
   auto value = std::is_same< Operation , IsDerivedFrom<Base> >::value;
   ASSERT_TRUE(value);
 }
 
-TEST(TMP_Test,VariadicMakeFromTemplate)
+TEST(TMP,VariadicMakeFromTemplate)
 {
   using Generator = Variadic< Make<IsDerivedFrom> , Delay<And> >;
 
@@ -63,7 +63,7 @@ TEST(TMP_Test,VariadicMakeFromTemplate)
   ASSERT_FALSE(isDerivedDerived);
 }
 
-TEST(TMP_Test, Variadic_Generate_Logic_Apply)
+TEST(TMP, Variadic_Generate_Logic_Apply)
 {
   using Generator = Variadic< Make<IsDerivedFrom> , Delay<And> >;
   using Operation = Apply< Generator , Base , Base , Base >;
@@ -73,12 +73,4 @@ TEST(TMP_Test, Variadic_Generate_Logic_Apply)
   using Operation2 = Apply< Generator , Base , Derived , Base >;
   value = isTrue< Apply< Variadic<Operation2,And>, Base , Derived , Base > >();
   ASSERT_FALSE(value);
-
-
-//  using Operation = Variadic< Delay< MakeFromTemplate<IsDerivedFrom> > , Base, Derived >;
-//  using Operation = Apply< Variadic<Delay<And>> , IsDerivedFrom<Base> , IsDerivedFrom<Derived> , IsDerivedFrom<Base> >;
-//  value = isTrue< Apply<Operation,Base> >();
-//  ASSERT_FALSE(value);
-
-//  value = isTrue< Apply< Variadic<Delay<And>> , Is >()
 }

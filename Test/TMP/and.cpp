@@ -5,7 +5,7 @@
 
 using namespace FGlue;
 
-TEST(TMP_Test,And)
+TEST(TMP,And)
 {
   auto trueTrue = isTrue< Apply<And,True,True> >();
   auto trueFalse = isTrue< Apply<And,True,False> >();

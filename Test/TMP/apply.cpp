@@ -6,7 +6,7 @@
 
 using namespace FGlue;
 
-TEST(TMP_Test,Apply)
+TEST(TMP,Apply)
 {
   auto true_v = Apply< Constant<True> >::value;
   auto false_v = Apply< Constant<False> >::value;

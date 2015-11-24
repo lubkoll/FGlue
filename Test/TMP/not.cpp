@@ -6,7 +6,7 @@
 
 using namespace FGlue;
 
-TEST(TMP_Test,Not)
+TEST(TMP,Not)
 {
   auto true_v = isTrue< Apply<Not,False> >();
   auto false_v = isTrue< Apply<Not,True> >();

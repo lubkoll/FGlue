@@ -8,7 +8,7 @@
 using namespace FGlue;
 using namespace Test;
 
-TEST(TMP_Test,Bind)
+TEST(TMP,Bind)
 {
   using BoundBase = Apply< Bind , IsBaseOf<Derived > , Base >;
   auto isBaseOfDerived = isTrue< Apply< BoundBase > >();

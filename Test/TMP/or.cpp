@@ -6,7 +6,7 @@
 
 using namespace FGlue;
 
-TEST(TMP_Test,Or)
+TEST(TMP,Or)
 {
   auto trueTrue = isTrue< Apply<Or,True,True> >();
   auto trueFalse = isTrue< Apply<Or,True,False> >();

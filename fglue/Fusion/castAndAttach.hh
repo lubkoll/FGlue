@@ -12,7 +12,7 @@ namespace FGlue
 {
   namespace Fusion
   {
-    template <class Source, class Decider = Constant<True> >
+    template <class Source>
     struct CastAndAttach
     {
       CastAndAttach(Source& source)
@@ -22,8 +22,7 @@ namespace FGlue
       template <class Target>
       void operator()(Target& target)
       {
-        if( isTrue< Apply<Decider,Source> >() )
-          source_.attach(static_cast<Source&>(target));
+        source_.attach(static_cast<Source&>(target));
       }
 
     private:
@@ -31,7 +30,7 @@ namespace FGlue
     };
 
 
-    template <class Source, class Decider = Constant<True> >
+    template <class Source>
     struct CastAndDetach
     {
       CastAndDetach(Source& source)
@@ -41,8 +40,7 @@ namespace FGlue
       template <class Target>
       void operator()(Target& target)
       {
-        if( isTrue< Apply<Decider,Source> >() )
-          source_.attach(static_cast<Source&>(target));
+        source_.detach(static_cast<Source&>(target));
       }
 
     private:

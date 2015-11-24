@@ -8,14 +8,14 @@
 using namespace FGlue;
 using namespace Test;
 
-TEST(TMP_Test,DefaultCombiner)
+TEST(TMP,DefaultCombiner)
 {
   using CombinedType = Apply<DefaultCombiner,True,False>;
   auto isEmpty = std::is_same<Empty,CombinedType>::value;
   ASSERT_TRUE( isEmpty );
 }
 
-TEST(TMP_Test,Composer)
+TEST(TMP,Composer)
 {
   using StoreBaseBase = Apply< Compose , Base , Base >;
   auto derivedFromDerived = std::is_base_of<Derived,StoreBaseBase>::value;

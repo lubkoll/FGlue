@@ -10,7 +10,7 @@
 using namespace FGlue;
 using namespace Test;
 
-TEST(TMP_Test,StoreIf)
+TEST(TMP,StoreIf)
 {
   auto isBase = std::is_same<Base,Apply<StoreIf< Constant<True> > , Base > >::value;
   ASSERT_TRUE( isBase );
@@ -21,7 +21,7 @@ TEST(TMP_Test,StoreIf)
   ASSERT_TRUE( isEmpty );
 }
 
-TEST(TMP_Test, StoreIfDerivedFrom)
+TEST(TMP, StoreIfDerivedFrom)
 {
   using StoredTypeBaseDerived = Apply< StoreIf< IsDerivedFrom<Base> > , Derived >;
   auto isDerived = std::is_same< Derived , StoredTypeBaseDerived >::value;
@@ -34,7 +34,7 @@ TEST(TMP_Test, StoreIfDerivedFrom)
   ASSERT_TRUE( isEmpty );
 }
 
-TEST(TMP_Test, StoreIfNotDerivedFrom)
+TEST(TMP, StoreIfNotDerivedFrom)
 {
   using StoredTypeBaseDerived = Apply< StoreIf< IsNotDerivedFrom<Base> > , Derived >;
   auto isDerived = std::is_same< Derived , StoredTypeBaseDerived >::value;
@@ -47,7 +47,7 @@ TEST(TMP_Test, StoreIfNotDerivedFrom)
   ASSERT_TRUE( isBase );
 }
 
-TEST(TMP_Test, StoreIfBaseOf)
+TEST(TMP, StoreIfBaseOf)
 {
   using StoredTypeBaseDerived = Apply< StoreIf< IsBaseOf<Base> > , Derived >;
   auto isDerived = std::is_same< Derived , StoredTypeBaseDerived >::value;
@@ -60,7 +60,7 @@ TEST(TMP_Test, StoreIfBaseOf)
   ASSERT_TRUE( isBase );
 }
 
-TEST(TMP_Test, StoreIfNotBaseOf)
+TEST(TMP, StoreIfNotBaseOf)
 {
   using StoredTypeBaseDerived = Apply< StoreIf< IsNotBaseOf<Base> > , Derived >;
   auto isDerived = std::is_same< Derived , StoredTypeBaseDerived >::value;

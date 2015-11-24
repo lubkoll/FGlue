@@ -1,42 +1,85 @@
 #ifndef FGLUE_FUSION_CONNECT_HH
 #define FGLUE_FUSION_CONNECT_HH
 
+#include "fglue/TMP/apply.hh"
+#include "fglue/TMP/trueFalse.hh"
+#include "fglue/Fusion/applyIf.hh"
+#include "fglue/Fusion/castAndAttach.hh"
+#include "fglue/Fusion/variadicFunctor.hh"
+
 namespace FGlue
 {
-
   template <class SourceOperation, class TargetOperation = SourceOperation>
   struct Connector
   {
-    template <class Source, bool valid = isTrue< Apply<SourceOperation,Source> >() >
+    template <class Base, class Source, bool valid = isTrue< Apply<SourceOperation,Source> >() >
     struct From
     {
       From(Source& source)
-        : source_(source)
+        : castAndAttach(source)
       {}
 
       template <class... Targets>
-      static void to(Targets&... targets)
+      void to(Targets&... targets)
       {
-        attach(source,targets...);
+        castAndAttach(targets...);
       }
 
-      Source& source_;
+      Fusion::VariadicFunctor< Fusion::UnaryApplyIf< Fusion::CastAndAttach<Base> , TargetOperation> > castAndAttach;
     };
 
-    template <class Source>
-    struct From<Source,false>
+    template <class Base, class Source>
+    struct From<Base,Source,false>
     {
-      From(Source&){}
+      template <class Arg>
+      From(Arg&){}
 
       template <class... Targets>
-      static void to(Targets&...)
+      void to(Targets&...)
       {}
     };
 
-    template <class Source>
+    template <class Base, class Source>
     static auto from(Source& source)
     {
-      return From<Source>(source);
+      return From<Base,Source>(source);
+    }
+  };
+
+  template <class SourceOperation, class TargetOperation = SourceOperation>
+  struct Deconnector
+  {
+    template <class Base, class Source, bool valid = isTrue< Apply<SourceOperation,Source> >() >
+    struct From
+    {
+      From(Source& source)
+        : castAndDetach(source)
+      {}
+
+      template <class... Targets>
+      void to(Targets&... targets)
+      {
+        castAndDetach(targets...);
+      }
+
+      Fusion::VariadicFunctor< Fusion::UnaryApplyIf< Fusion::CastAndDetach<Base> , TargetOperation> > castAndDetach;
+    };
+
+    template <class Base, class Source>
+    struct From<Base,Source,false>
+    {
+      template <class Arg>
+      From(Arg&){}
+
+      template <class... Targets>
+      void to(Targets&...)
+      {}
+    };
+
+    template <class Base, class Source>
+    static auto from(Source& source)
+    {
+      return From<Base,Source>(source);
     }
   };
 }

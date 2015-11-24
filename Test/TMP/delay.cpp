@@ -9,7 +9,7 @@
 
 using namespace FGlue;
 
-TEST(TMP_Test, Delay)
+TEST(TMP, Delay)
 {
   using Reference = Apply<And,True,True>;
   auto value = isTrue<Reference>();
