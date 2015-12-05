@@ -6,7 +6,6 @@
 #include "fglue/TMP/delay.hh"
 #include "fglue/TMP/isDerivedFrom.hh"
 #include "fglue/TMP/make.hh"
-#include "fglue/TMP/makeVariadic.hh"
 #include "fglue/TMP/or.hh"
 #include "fglue/TMP/trueFalse.hh"
 #include "fglue/TMP/variadic.hh"

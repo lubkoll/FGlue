@@ -6,7 +6,6 @@
 #include "delay.hh"
 #include "isBaseOf.hh"
 #include "make.hh"
-#include "makeVariadic.hh"
 #include "or.hh"
 #include "storeIf.hh"
 #include "variadic.hh"
