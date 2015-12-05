@@ -7,6 +7,7 @@
 #include "chain.hh"
 #include "not.hh"
 #include "trueFalse.hh"
+#include "variadic.hh"
 
 namespace FGlue
 {

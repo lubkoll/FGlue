@@ -4,9 +4,6 @@
 
 #define CONNECT(NAME,SOURCE,TARGET) SOURCE.set##NAME##(TARGET.get##NAME##());
 
-#define CAT(FIRST,SECOND) FIRST##SECOND
-
-
 #define GENERATE_MEM_FN_CHECK(NAME) \
 template <class T> \
 using TryMemFn_##NAME = decltype( &T::NAME ); \

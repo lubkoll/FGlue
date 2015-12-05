@@ -1,6 +1,7 @@
 #ifndef FGLUE_TMP_CREATE_MISSING_BASE_CLASSES_HH
 #define FGLUE_TMP_CREATE_MISSING_BASE_CLASSES_HH
 
+#include "and.hh"
 #include "apply.hh"
 #include "delay.hh"
 #include "isBaseOf.hh"
@@ -12,27 +13,22 @@
 
 namespace FGlue
 {
-  using VariadicIsBaseOfGenerator = Variadic< Make<IsBaseOf> , Delay<Or> >;
+  template <class... Derived>
+  using IsBaseOfOneOf = Apply< Variadic< Make<IsBaseOf> , Delay<Or> > , Derived... >;
 
-  using VariadicIsNotBaseOfGenerator = Variadic< Make<IsNotBaseOf> , Delay<And> >;
-
-
-  template <class... ExistingBaseClasses>
-  using VariadicIsBaseOf = Apply< VariadicIsBaseOfGenerator , ExistingBaseClasses... >;
-
-  template <class... ExistingBaseClasses>
-  using VariadicIsNotBaseOf = Apply< VariadicIsNotBaseOfGenerator , ExistingBaseClasses... >;
+  template <class... Derived>
+  using IsNotBaseOfAnyOf = Apply< Make<IsNotBaseOf> , Delay<And> , Derived... >;
 
 
-  template <class Operation, class... ExistingBaseClasses>
-  using CreateMissingBaseClasses = Apply< Variadic<StoreIf<Operation>,Compose> , ExistingBaseClasses...>;
+  template <class Operation, class... Derived>
+  using EnableBaseClassesIf = Apply< Variadic<StoreIf<Operation>,Compose> , Derived...>;
 
 
   template <class... Derived>
   struct BaseOf
   {
     template <class... OtherBases>
-    using NotBaseOf = StoreIf< Apply< Delay<And> , VariadicIsBaseOf<Derived...> , VariadicIsNotBaseOf<OtherBases...> > >;
+    using NotBaseOf = StoreIf< Apply< Delay<And> , IsBaseOfOneOf<Derived...> , IsNotBaseOfAnyOf<OtherBases...> > >;
   };
 
   template <class... BaseClassCandidates>

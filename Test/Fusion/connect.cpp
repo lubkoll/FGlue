@@ -1,6 +1,9 @@
 #include <gtest/gtest.h>
 #include <vector>
 
+// Copyright (C) 2015 by Lars Lubkoll. All rights reserved.
+// Released under the terms of the GNU General Public License version 3 or later.
+
 #include "fglue/TMP/isDerivedFrom.hh"
 #include "fglue/Fusion/connect.hh"
 
